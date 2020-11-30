@@ -22,13 +22,13 @@ author_counter = 0
 
 
 @bot.command()
-async def test(ctx, arg):
-    await ctx.send(arg)
+async def food(ctx, arg1, arg2):
+    await ctx.send(f"Today we are ordering {arg1} and {arg2}")
 
 
-@client.event
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('We have logged in as {0.user}'.format(bot))
 
 
 @client.event
@@ -78,7 +78,7 @@ async def on_message(message):
         await message.channel.send(f'My resume: \n discord version: {discord.__version__}')
 
     if message.content.startswith(f'{prefix}history'):
-        await message.channel.send(f'Your messages history is: \n {messages}')
+        await message.channel.send(f'Your messages history is: \n {message}')
     if "minecraft" in message.content:
         await message.channel.send("Lets speedrun!")
     if message.content.startswith(f"{prefix}counter"):
@@ -90,9 +90,7 @@ async def on_message(message):
         await message.add_reaction('\N{THUMBS UP SIGN}')
     if "create channel" in message.content:
         await guild.create_text_channel('little channel')
-    if "delc" in message.content:
-        cid = discord.utils.get(guild.text_channels, name="little channel")
-        await channel_delete(cid)
+
 
 
 bot.run('Nzc1MzU5MTIzNzkzMzc5MzMw.X6lLdA.73sDW8yu6agrKGTyP4JZ8rAfzA8')
